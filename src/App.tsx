@@ -44,13 +44,25 @@ function Demo() {
   );
 }
 
-function resultsTable(race) {
+function ResultsTable({race}:{race:unknown[]}) {
   const rows = race.map((res) => (
     <Table.Tr key={res.candidate}>
-      <Table.Td>{res.votes}</Table.TD>
+      <Table.Td>{res.candidate}</Table.Td>
+      <Table.Td>{res.votes}</Table.Td>
       <Table.Td>{res.percent}</Table.Td>
     </Table.Tr>
   ));
+
+  return (
+    <Table>
+      <Table.Thead>
+        <Table.Th>Candidate</Table.Th>
+        <Table.Th>Votes</Table.Th>
+        <Table.Th>Percent</Table.Th>
+      </Table.Thead>
+      <Table.Tbody>{rows}</Table.Tbody>
+    </Table>
+    )
 }
 
 function App() {
@@ -72,7 +84,7 @@ function App() {
       <p className="read-the-docs">
         Click on nothing to learn more 🫛
       </p>
-      <Demo />
+      <ResultsTable race={results}/>
     </>
   )
 }
