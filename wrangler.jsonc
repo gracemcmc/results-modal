@@ -2,7 +2,6 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   // Top-level configuration
   "name": "results-modal",
-  "main": "src/main.tsx",
   // Set this to today's date
   "compatibility_date": "2026-02-19",
   "workers_dev": false,
