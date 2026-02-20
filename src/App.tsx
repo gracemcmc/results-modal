@@ -18,9 +18,6 @@ const results = [
   {candidate: "Anjanee Bell", votes: 19290, percent: 0.4205}
 ]
 
-function 
-
-
 function Demo() {
   const rows = elements.map((element) => (
     <Table.Tr key={element.name}>
