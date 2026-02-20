@@ -18,6 +18,8 @@ const results = [
   {candidate: "Anjanee Bell", votes: 19290, percent: 0.4205}
 ]
 
+function 
+
 
 function Demo() {
   const rows = elements.map((element) => (
@@ -44,8 +46,9 @@ function Demo() {
   );
 }
 
+
 function ResultsTable({race}:{race:unknown[]}) {
-  const rows = race.map((res) => (
+  const rows = race.map((res:unknown) => (
     <Table.Tr key={res.candidate}>
       <Table.Td>{res.candidate}</Table.Td>
       <Table.Td>{res.votes}</Table.Td>
