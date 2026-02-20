@@ -1,3 +1,40 @@
+
+
+
+/*
+
+GIT BASICS
+
+- view your branches with `git branch`
+- make a new branch with `git checkout -b new-branch-name`
+- swith to an existing branch with `git checkout branch-name`
+- Add all of your changes by navigating to the root directory of your project in the terminal
+  and then enter `git add .`
+- enter `git commit -m "My commit messge here"` to commit your changes and log a brief description
+- publish your changes to github with `git push`
+  - the first time you push a commit on a new branch you will have to type `git push -u origin branch-name`
+
+Some advanced tips
+- `git stash` temporarily saves your changes since your last commit and reverts to the old version. you can
+  you can re-load them with `git stash pop`
+- `git restore file-path` irrevocably reverts the changes you have made since the last commit for the file path specified
+  - for example, I could `git restore my-file.txt` to target a specific file, or `git restore src/` to target a folder
+- `git diff .` will show you the changes since your last commit. You can also specify a file path instead of the .
+
+Creating a new git project:
+- option 1: create the folder first in github and then follow the steps provided
+- option 2: in an existing project directory:
+  - enter `git init`
+  - make a commit: `git add . && git commit -m "initial commit"` or whatever you would like to commit
+  - in github, make a project with the same name as your project directory (ie results-modal)
+  - connect to github: `git remote add origin https://github.com/gracemcmc/project-name.git && git push -u origin main`
+
+
+*/
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
