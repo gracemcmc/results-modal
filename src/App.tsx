@@ -6,7 +6,7 @@ import {Table, Button} from "@mantine/core";
 import './App.css';
 import * as cheerio from 'cheerio';
 
-console.log(location.pathname);
+console.log(location);
 
 const elements = [
   { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
