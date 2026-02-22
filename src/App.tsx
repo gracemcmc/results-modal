@@ -16,7 +16,35 @@ elements.push({position: 8, mass:23.394, symbol: 'D', name: 'Dylan'})
 const results = [
   {candidate: "Leo Williams", votes: 26402, percent: 0.5755},
   {candidate: "Anjanee Bell", votes: 19290, percent: 0.4205}
-]
+];
+
+
+async function GetResultsNCSBE() {
+  const url = "https://er.ncsbe.gov/enr/20241105/data/results_0.txt"
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Response status: {$response.status}');
+    }
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (e: any) {
+    console.error(e.message);
+  };
+}
+
+const temp = await GetResultsNCSBE();
+console.log(temp);
+const r = JSON.parse(temp);
+
+for (let i = 0; i < 10; i++) {
+  console.log(r[i]);
+}
+
+function PopulateResults({race_name}:{race_name:string}) {
+  return 0;
+}
 
 function Demo() {
   const rows = elements.map((element) => (
@@ -45,11 +73,11 @@ function Demo() {
 
 
 function ResultsTable({race}:{race:unknown[]}) {
-  const rows = race.map((res:unknown) => (
-    <Table.Tr key={res.candidate}>
-      <Table.Td>{res.candidate}</Table.Td>
-      <Table.Td>{res.votes}</Table.Td>
-      <Table.Td>{res.percent}</Table.Td>
+  const rows = race.map((res_rows: any) => (
+    <Table.Tr key={res_rows.candidate}>
+      <Table.Td>{res_rows.candidate}</Table.Td>
+      <Table.Td>{res_rows.votes}</Table.Td>
+      <Table.Td>{res_rows.percent}</Table.Td>
     </Table.Tr>
   ));
 
@@ -88,5 +116,8 @@ function App() {
     </>
   )
 }
+
+var x = document.createElement("IFRAME");
+
 
 export default App
