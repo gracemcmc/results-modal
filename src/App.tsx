@@ -1,3 +1,6 @@
+/* eslint-disable no-use-before-define */ 
+
+
 import { useState } from 'react'
 import {Table, Button} from "@mantine/core"
 import './App.css'
