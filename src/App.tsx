@@ -4,7 +4,9 @@
 import { useState } from 'react';
 import {Table, Button} from "@mantine/core";
 import './App.css';
+import * as cheerio from 'cheerio';
 
+console.log(location.pathname);
 
 const elements = [
   { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
@@ -16,64 +18,56 @@ const elements = [
 
 elements.push({position: 8, mass:23.394, symbol: 'D', name: 'Dylan'})
 
+
+function counter() {
+  return (<p>Bus</p>);
+}
+
+
+
 const results = [
   {candidate: "Leo Williams", votes: 26402, percent: 0.5755},
   {candidate: "Anjanee Bell", votes: 19290, percent: 0.4205}
 ];
 
+function PopulateResults({race_name}:{race_name:string}) {
+  return 0;
+}
 
 async function GetResultsNCSBE() {
-  const url = "https://er.ncsbe.gov/enr/20241105/data/results_0.txt"
+  let page = "0"
+  const url = "https://er.ncsbe.gov/enr/20260303/data/results_41.txt?v=22-15-12"
   try {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error('Response status: {$response.status}');
     }
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (e: any) {
     console.error(e.message);
   };
 }
 
-const temp = await GetResultsNCSBE();
-console.log(temp);
-const r = JSON.parse(temp);
-
-function counter() {
-  return (<p>Bus</p>);
+async function GetResultsTabular() {
+  let page = "0"
+  const url = "https://er.ncsbe.gov/?election_dt=03/03/2026&county_id=41&office=ALL&contest=0"
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Response status: {$response.status}');
+    }
+    const result = await response.json();
+    return result;
+  } catch (e: any) {
+    console.error(e.message);
+  };
 }
 
-function PopulateResults({race_name}:{race_name:string}) {
-  return 0;
-}
 
-function Demo() {
-  const rows = elements.map((element) => (
-    <Table.Tr key={element.name}>
-      <Table.Td>{element.position}</Table.Td>
-      <Table.Td>{element.name}</Table.Td>
-      <Table.Td>{element.symbol}</Table.Td>
-      <Table.Td>{element.mass}</Table.Td>
-    </Table.Tr>
-  ));
-
-  return (
-    <Table>
-      <Table.Thead>
-        <Table.Tr>
-          <Table.Th>Element position</Table.Th>
-          <Table.Th>Element name</Table.Th>
-          <Table.Th>Symbol</Table.Th>
-          <Table.Th>Atomic mass</Table.Th>
-        </Table.Tr>
-      </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
-    </Table>
-  );
-}
-
+const full_results = await GetResultsNCSBE();
+let filtered = full_results.filter(item => item.lid === "2119");
+console.log(filtered);
 
 function ResultsTable({race}:{race:unknown[]}) {
   const rows = race.map((res_rows: any) => (
@@ -93,14 +87,37 @@ function ResultsTable({race}:{race:unknown[]}) {
       </Table.Thead>
       <Table.Tbody>{rows}</Table.Tbody>
     </Table>
-    )
+    );
+}
+
+function PlainResultsTable({race}:{race:unknown[]}) {
+  const rows = race.map((res_rows: any) => (
+    <tr key={res_rows.candidate}>
+      <td>{res_rows.candidate}</td>
+      <td>{res_rows.votes}</td>
+      <td>{res_rows.percent}</td>
+    </tr>
+  ));
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate</th>
+          <th>Votes</th>
+          <th>Percent</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
+    );
 }
 
 function App() {
   // const [count, setCount] = useState(0)
   const [count, setCount] = useState("potato")
-  for (let i = 0; i < 10; i++) {
-    console.log(r[i]);
+  for (let i = 0; i < 5; i++) {
+    console.log(full_results[i]);
   }
   return (
     <>
@@ -117,12 +134,9 @@ function App() {
       <p className="read-the-docs">
         Click on nothing to learn more 🫛
       </p>
-      <ResultsTable race={results}/>
+      <PlainResultsTable race={results} />c
     </>
   )
 }
-
-var x = document.createElement("IFRAME");
-
 
 export default App
