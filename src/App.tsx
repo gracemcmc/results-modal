@@ -1,9 +1,9 @@
 /* eslint-disable no-use-before-define */ 
 
 
-import { useState } from 'react'
-import {Table, Button} from "@mantine/core"
-import './App.css'
+import { useState } from 'react';
+import {Table, Button} from "@mantine/core";
+import './App.css';
 
 
 const elements = [
@@ -41,8 +41,8 @@ const temp = await GetResultsNCSBE();
 console.log(temp);
 const r = JSON.parse(temp);
 
-for (let i = 0; i < 10; i++) {
-  console.log(r[i]);
+function counter() {
+  return (<p>Bus</p>);
 }
 
 function PopulateResults({race_name}:{race_name:string}) {
@@ -99,7 +99,9 @@ function ResultsTable({race}:{race:unknown[]}) {
 function App() {
   // const [count, setCount] = useState(0)
   const [count, setCount] = useState("potato")
-
+  for (let i = 0; i < 10; i++) {
+    console.log(r[i]);
+  }
   return (
     <>
       <h1>Vite + React</h1>
