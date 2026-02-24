@@ -4,39 +4,33 @@
 import { useState } from 'react';
 import {Table, Button} from "@mantine/core";
 import './App.css';
-import * as cheerio from 'cheerio';
 
-console.log(location);
+console.log(document.referrer);
 
-const elements = [
-  { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
-  { position: 7, mass: 14.007, symbol: 'N', name: 'Nitrogen' },
-  { position: 39, mass: 88.906, symbol: 'Y', name: 'Yttrium' },
-  { position: 56, mass: 137.33, symbol: 'Ba', name: 'Barium' },
-  { position: 58, mass: 140.12, symbol: 'Ce', name: 'Cerium' },
-];
-
-elements.push({position: 8, mass:23.394, symbol: 'D', name: 'Dylan'})
-
-
-function counter() {
-  return (<p>Bus</p>);
-}
-
-
-
-const results = [
+let results = [
   {candidate: "Leo Williams", votes: 26402, percent: 0.5755},
   {candidate: "Anjanee Bell", votes: 19290, percent: 0.4205}
 ];
 
-function PopulateResults({race_name}:{race_name:string}) {
-  return 0;
-}
+/*
+const urlParams = new URLSearchParams(window.location.search);
+const form = document.getElementById('subscribe');
 
-async function GetResultsNCSBE() {
-  let page = "0"
-  const url = "https://er.ncsbe.gov/enr/20260303/data/results_41.txt?v=22-15-12"
+
+urlParams.set('order', 'date');
+
+window.location.search = urlParams;
+*/
+
+const urls_by_locale = [
+  {outlet: "Guilford", url: "https://er.ncsbe.gov/enr/20260303/data/results_41.txt?v=22-15-12"},
+  {outlet: "Wake", url: "https://er.ncsbe.gov/enr/20260303/data/results_92.txt?v=22-15-12"},
+  {outlet: "Durham", url: "https://er.ncsbe.gov/enr/20260303/data/results_32.txt?v=22-15-12"},
+  {outlet: "Cumberland", url: "https://er.ncsbe.gov/enr/20260303/data/results_26.txt?v=22-15-12"},
+  {outlet: "State", url: "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"},
+]
+
+async function GetResultsNCSBE(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -49,25 +43,19 @@ async function GetResultsNCSBE() {
   };
 }
 
-async function GetResultsTabular() {
-  let page = "0"
-  const url = "https://er.ncsbe.gov/?election_dt=03/03/2026&county_id=41&office=ALL&contest=0"
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Response status: {$response.status}');
-    }
-    const result = await response.json();
-    return result;
-  } catch (e: any) {
-    console.error(e.message);
-  };
+function get_uniques(arr) {
+  let election_options = [''];
+  for (var i = 0; i < arr.length; i++) {
+    var name = arr.name;
+    //if (!(name in options)) {
+    //}
+  }
 }
 
-
-const full_results = await GetResultsNCSBE();
-let filtered = full_results.filter(item => item.lid === "2119");
-console.log(filtered);
+async function CreateOptions() {
+  const full_results = await GetResultsNCSBE(urls_by_locale[0].url);
+  let filtered = full_results.filter(item => item.lid === "2119");
+}
 
 function ResultsTable({race}:{race:unknown[]}) {
   const rows = race.map((res_rows: any) => (
@@ -113,28 +101,39 @@ function PlainResultsTable({race}:{race:unknown[]}) {
     );
 }
 
+/*let html_string= "content";
+let myIframe = document.getElementById('output_iframe1');
+myIframe.src = `data:text/html;charset=utf-8,${html_string}`;
+
+<iframe id="output_iframe1"></iframe>*/
+
+const full_results = await GetResultsNCSBE(urls_by_locale[0].url);
+let filtered = full_results.filter(item => item.lid === "2119");
+console.log(filtered);
+
+results = full_results;
+
+window.addEventListener("click", myFunction);
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+
 function App() {
   // const [count, setCount] = useState(0)
-  const [count, setCount] = useState("potato")
-  for (let i = 0; i < 5; i++) {
-    console.log(full_results[i]);
-  }
+  
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-        <p>I am practicing</p>
+      <div className="get-url">
+        <p>Input link to results</p>
+        <form action="/signup" method="post" id="signup"> 
+          <input type="text"></input>
+        </form>
       </div>
       <p className="read-the-docs">
         Click on nothing to learn more 🫛
       </p>
-      <PlainResultsTable race={results} />c
+      <ResultsTable race={results} />
     </>
   )
 }
