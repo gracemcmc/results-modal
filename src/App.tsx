@@ -4,6 +4,8 @@
 import { useState } from 'react';
 import {Table, Button} from "@mantine/core";
 import './App.css';
+import {GetResultsNCSBE} from '/Users/gracemcfadden/results-modal/src/functions.ts'
+
 
 //console.log(document.referrer);
 
@@ -33,7 +35,7 @@ window.location.search = urlParams;
 
 // utils
 
-function get_uniques(arr_of_dicts) {
+function get_uniques(arr_of_dicts: any) {
   let election_options = [''];
   for (var i = 0; i < arr_of_dicts.length; i++) {
     //cnm is the unique race name
@@ -89,13 +91,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 */
 
-function App() {
+export function App() {
   // const [count, setCount] = useState(0) //action="/post" method="post" target="_self" type="url"
   // <button onClick={() => getURL("french")}>here it is</button>
   let input_url = "https://er.ncsbe.gov/enr/20260303/data/results_41.txt?v=22-15-12";
   const [options, setOptions] = useState();
   const [ncsbeurl, getURL] = useState(" ");
-
+/*
   function Tryingoutform() {
 
     function handleChange(i) {
@@ -124,15 +126,15 @@ function App() {
     } catch (e: any) {
       console.error(e.message, url);
     };
-  }
+  }*/
 
-  async function createOptions(ncsbeurl) {
+  async function createOptions(ncsbeurl: any) {
     const full_results = await GetResultsNCSBE(input_url);
     const beetle = get_uniques(full_results);
     //let filtered = full_results.filter(item => item.lid === "2119")
     return beetle}
 
-  function OptionsPrint(ops) {
+  function OptionsPrint(ops: any) {
     const ps = ops.map((o: any) => (
       <p>o</p>
       ));
@@ -150,11 +152,13 @@ function App() {
 
     return (
       <Table>
-        <Table.Head>
+        <Table.Thead>
+          <Table.Tr>
           <Table.Th>Candidate</Table.Th>
           <Table.Th>Votes</Table.Th>
           <Table.Th>Percent</Table.Th>
-        </Table.Head>
+          </Table.Tr>
+        </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
       );
@@ -163,14 +167,12 @@ function App() {
     return (
       <>
         <div id="form">
-          <Tryingoutform />
         </div>
         <p className="read-the-docs">
           Click on nothing to learn more 🫛
         </p>
         <p id="demo">check</p>
-        <OptionsPrint />
-        <p>{options}</p>
+
     </>
     )
 }
@@ -182,6 +184,3 @@ form.addEventListener('submit', function() {
 });*/
 
 // export is like public in java
-
-
-export default App
