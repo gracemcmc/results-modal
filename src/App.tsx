@@ -171,7 +171,7 @@ export function App() {
         <p className="read-the-docs">
           Click on nothing to learn more 🫛
         </p>
-        <p id="demo">check</p>
+        <p id="demo">check 1 2</p>
 
     </>
     )
