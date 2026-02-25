@@ -1,6 +1,6 @@
 import {Table, Button} from "@mantine/core";
 import {GetResultsNCSBE} from './functions.ts'
-import { useState, useEffect } from 'React'
+import { useState, useEffect } from 'react'
 
 export function ResultsTable(props: {url: string}) {
   const [results_table, setResults_Table] = useState<unknown[] | undefined>([]);
