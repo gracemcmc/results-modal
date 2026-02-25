@@ -5,6 +5,7 @@ import { useState } from 'react';
 import {Table, Button} from "@mantine/core";
 import './App.css';
 import {GetResultsNCSBE} from './functions.ts'
+import {ResultsTable} from './Components.tsx';
 
 
 //console.log(document.referrer);
@@ -126,6 +127,28 @@ export function App() {
     } catch (e: any) {
       console.error(e.message, url);
     };
+
+  function ResultsTable({race}:{race:unknown[]}) {
+    const rows = race.map((res_rows: any) => (
+      <Table.Tr key={res_rows.candidate}>
+        <Table.Td>{res_rows.candidate}</Table.Td>
+        <Table.Td>{res_rows.votes}</Table.Td>
+        <Table.Td>{res_rows.percent}</Table.Td>
+      </Table.Tr>
+      return (
+      <Table>
+        <Table.Thead>
+          <Table.Tr>
+          <Table.Th>Candidate</Table.Th>
+          <Table.Th>Votes</Table.Th>
+          <Table.Th>Percent</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>{rows}</Table.Tbody>
+      </Table>
+      );
+
+    ));}
   }*/
 
   async function createOptions(ncsbeurl: any) {
@@ -141,38 +164,14 @@ export function App() {
     return ps;
     }
 
-  function ResultsTable({race}:{race:unknown[]}) {
-    const rows = race.map((res_rows: any) => (
-      <Table.Tr key={res_rows.candidate}>
-        <Table.Td>{res_rows.candidate}</Table.Td>
-        <Table.Td>{res_rows.votes}</Table.Td>
-        <Table.Td>{res_rows.percent}</Table.Td>
-      </Table.Tr>
-    ));
 
-    return (
-      <Table>
-        <Table.Thead>
-          <Table.Tr>
-          <Table.Th>Candidate</Table.Th>
-          <Table.Th>Votes</Table.Th>
-          <Table.Th>Percent</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
-      );
-  }
-    
+    const demo_url = urls_by_locale[1].url;
     return (
       <>
         <div id="form">
         </div>
-        <p className="read-the-docs">
-          Click on nothing to learn more 🫛
-        </p>
         <p id="demo">check 1 2</p>
-
+        <ResultsTable url={demo_url} />
     </>
     )
 }

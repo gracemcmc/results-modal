@@ -13,6 +13,7 @@ export function ResultsTable(props: {url: string}) {
 
   const rows = results_table?.map((result: any) => (
       <Table.Tr key={result.candidate}>
+        <Table.Td>{result.race}</Table.Td>
         <Table.Td>{result.candidate}</Table.Td>
         <Table.Td>{result.votes}</Table.Td>
         <Table.Td>{result.percent}</Table.Td>
@@ -23,6 +24,7 @@ export function ResultsTable(props: {url: string}) {
       <Table>
         <Table.Thead>
           <Table.Tr>
+          <Table.Th>Race</Table.Th>
           <Table.Th>Candidate</Table.Th>
           <Table.Th>Votes</Table.Th>
           <Table.Th>Percent</Table.Th>

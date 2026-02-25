@@ -34,10 +34,12 @@ function results_parser(results_table: {[key:string]: string}[]) {
 	const new_array = [];
 	for (let i = 0; i < results_table.length; i++) {
 		let new_dictionary = {
+      race: "",
 			candidate: "",
 			votes: "",
 			percent: ""
 		}
+    new_dictionary.race = results_table[i].cnm;
 		new_dictionary.candidate = results_table[i].bnm;
 		new_dictionary.votes = results_table[i].vct;
 		new_dictionary.percent = results_table[i].pct;
