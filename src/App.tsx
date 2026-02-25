@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import {Table, Button} from "@mantine/core";
 import './App.css';
-import {GetResultsNCSBE} from '/Users/gracemcfadden/results-modal/src/functions.ts'
+import {GetResultsNCSBE} from './functions.ts'
 
 
 //console.log(document.referrer);

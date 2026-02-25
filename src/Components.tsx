@@ -1,5 +1,5 @@
 import {Table, Button} from "@mantine/core";
-import {GetResultsNCSBE} from '/Users/gracemcfadden/results-modal/src/functions.ts'
+import {GetResultsNCSBE} from './functions.ts'
 import { useState, useEffect } from 'React'
 
 export function ResultsTable(props: {url: string}) {
