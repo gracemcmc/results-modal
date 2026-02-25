@@ -32,7 +32,6 @@ export async function GetResultsNCSBE(url: string) {
 
 function results_parser(results_table: {[key:string]: string}[]) {
 	const new_array = [];
-	debugger;
 	for (let i = 0; i < results_table.length; i++) {
 		let new_dictionary = {
 			candidate: "",
