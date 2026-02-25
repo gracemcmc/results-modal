@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import {ResultsTable} from '../Components.tsx'
+import {ResultsTable} from '../../Components.tsx'
 
 
 export const Route = createFileRoute('/election-table/$id')({
