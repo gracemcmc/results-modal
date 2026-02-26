@@ -2,14 +2,14 @@ import {Table, Button} from "@mantine/core";
 import {GetResultsNCSBE} from './functions.ts'
 import { useState, useEffect } from 'react'
 
-export function ResultsTable(props: {input_props: []}) {
+export function ResultsTable(props: {input_props: string[]}) {
   const [results_table, setResults_Table] = useState<unknown[] | undefined>([]);
 
   const lid = props.input_props[1];
   console.log(lid);
 
   function filterAndSetTable(results: any){
-    const filtered = results.filter(item => item.lid == lid);
+    const filtered = results.filter((item: any) => item.lid == lid);
     setResults_Table(filtered);
     return filtered;
   }

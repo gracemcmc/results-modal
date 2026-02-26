@@ -63,7 +63,7 @@ export function App() {
 
   const [options, setOptions] = useState();
   const [ncsbeurl, getURL] = useState(" ");
-  let sample = ["faber", "2147", "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"];
+  const sample = ["faber", "2147", "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"];
   
     return (
       <>
