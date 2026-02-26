@@ -22,6 +22,3 @@ export default defineConfig([
   },
 ])
 
-export default defineConfig([
-  globalIgnores(["results-modal/*"]),
-]);
