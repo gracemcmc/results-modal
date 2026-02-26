@@ -76,7 +76,6 @@ export function App() {
             <li>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM: state_2141</li>
           </ul>
         </div>
-        <p id="demo">check 1 2</p>
         <ResultsTable input_props={sample} />
     </>
     )
