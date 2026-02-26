@@ -4,91 +4,34 @@
 import { useState } from 'react';
 import {Table, Button} from "@mantine/core";
 import './App.css';
-import * as cheerio from 'cheerio';
-
-console.log(location);
-
-const elements = [
-  { position: 6, mass: 12.011, symbol: 'C', name: 'Carbon' },
-  { position: 7, mass: 14.007, symbol: 'N', name: 'Nitrogen' },
-  { position: 39, mass: 88.906, symbol: 'Y', name: 'Yttrium' },
-  { position: 56, mass: 137.33, symbol: 'Ba', name: 'Barium' },
-  { position: 58, mass: 140.12, symbol: 'Ce', name: 'Cerium' },
-];
-
-elements.push({position: 8, mass:23.394, symbol: 'D', name: 'Dylan'})
+import {GetResultsNCSBE} from './functions.ts'
+import {ResultsTable} from './Components.tsx';
 
 
-function counter() {
-  return (<p>Bus</p>);
-}
+const urls_by_locale = [
+  {outlet: "guilford", url: "https://er.ncsbe.gov/enr/20260303/data/results_41.txt?v=22-15-12"},
+  {outlet: "wake", url: "https://er.ncsbe.gov/enr/20260303/data/results_92.txt?v=22-15-12"},
+  {outlet: "durham", url: "https://er.ncsbe.gov/enr/20260303/data/results_32.txt?v=22-15-12"},
+  {outlet: "cumberland", url: "https://er.ncsbe.gov/enr/20260303/data/results_26.txt?v=22-15-12"},
+  {outlet: "state", url: "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"},
+]
 
 
 
-const results = [
-  {candidate: "Leo Williams", votes: 26402, percent: 0.5755},
-  {candidate: "Anjanee Bell", votes: 19290, percent: 0.4205}
-];
+// utils
 
-function PopulateResults({race_name}:{race_name:string}) {
-  return 0;
-}
-
-async function GetResultsNCSBE() {
-  let page = "0"
-  const url = "https://er.ncsbe.gov/enr/20260303/data/results_41.txt?v=22-15-12"
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Response status: {$response.status}');
+function get_uniques(arr_of_dicts: any) {
+  let election_options = [''];
+  for (var i = 0; i < arr_of_dicts.length; i++) {
+    //cnm is the unique race name
+    var race_name = arr_of_dicts.cnm;
+    if (!(race_name in election_options)) {
+      election_options.push(race_name);
     }
-    const result = await response.json();
-    return result;
-  } catch (e: any) {
-    console.error(e.message);
-  };
+  }
+  return election_options;
 }
 
-async function GetResultsTabular() {
-  let page = "0"
-  const url = "https://er.ncsbe.gov/?election_dt=03/03/2026&county_id=41&office=ALL&contest=0"
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Response status: {$response.status}');
-    }
-    const result = await response.json();
-    return result;
-  } catch (e: any) {
-    console.error(e.message);
-  };
-}
-
-
-const full_results = await GetResultsNCSBE();
-let filtered = full_results.filter(item => item.lid === "2119");
-console.log(filtered);
-
-function ResultsTable({race}:{race:unknown[]}) {
-  const rows = race.map((res_rows: any) => (
-    <Table.Tr key={res_rows.candidate}>
-      <Table.Td>{res_rows.candidate}</Table.Td>
-      <Table.Td>{res_rows.votes}</Table.Td>
-      <Table.Td>{res_rows.percent}</Table.Td>
-    </Table.Tr>
-  ));
-
-  return (
-    <Table>
-      <Table.Thead>
-        <Table.Th>Candidate</Table.Th>
-        <Table.Th>Votes</Table.Th>
-        <Table.Th>Percent</Table.Th>
-      </Table.Thead>
-      <Table.Tbody>{rows}</Table.Tbody>
-    </Table>
-    );
-}
 
 function PlainResultsTable({race}:{race:unknown[]}) {
   const rows = race.map((res_rows: any) => (
@@ -113,30 +56,30 @@ function PlainResultsTable({race}:{race:unknown[]}) {
     );
 }
 
-function App() {
-  // const [count, setCount] = useState(0)
-  const [count, setCount] = useState("potato")
-  for (let i = 0; i < 5; i++) {
-    console.log(full_results[i]);
-  }
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-        <p>I am practicing</p>
-      </div>
-      <p className="read-the-docs">
-        Click on nothing to learn more 🫛
-      </p>
-      <PlainResultsTable race={results} />c
+
+export function App() {
+
+  let input_url = "https://er.ncsbe.gov/enr/20260303/data/results_58.txt?v=22-15-12";
+
+  const [options, setOptions] = useState();
+  const [ncsbeurl, getURL] = useState(" ");
+  const sample = ["faber", "2147", "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"];
+  
+    return (
+      <>
+        <div id="list">
+          <h3>Append the following to the URL to display results</h3>
+          <ul>
+            <li>US SENATE - DEM: state_2147</li>
+            <li>US SENATE - REP: state_2149</li>
+            <li>US HOUSE OF REPRESENTATIVES DISTRICT 04 - DEM: state_2114</li>
+            <li>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM: state_2141</li>
+          </ul>
+        </div>
+        <p id="demo">check 1 2</p>
+        <ResultsTable input_props={sample} />
     </>
-  )
+    )
 }
 
-export default App
+// export is like public in java
