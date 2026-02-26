@@ -95,9 +95,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
 export function App() {
   // const [count, setCount] = useState(0) //action="/post" method="post" target="_self" type="url"
   // <button onClick={() => getURL("french")}>here it is</button>
-  let input_url = "https://er.ncsbe.gov/enr/20260303/data/results_41.txt?v=22-15-12";
+  let input_url = "https://er.ncsbe.gov/enr/20260303/data/results_58.txt?v=22-15-12";
   const [options, setOptions] = useState();
   const [ncsbeurl, getURL] = useState(" ");
+  let sample = ["faber", "2147", "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"];
 /*
   function Tryingoutform() {
 
@@ -168,18 +169,19 @@ export function App() {
     const demo_url = urls_by_locale[1].url;
     return (
       <>
-        <div id="form">
+        <div id="list">
+          <h3>Append the following to the URL to display results</h3>
+          <ul>
+            <li>US SENATE - DEM: state_2147</li>
+            <li>US SENATE - REP: state_2149</li>
+            <li>US HOUSE OF REPRESENTATIVES DISTRICT 04 - DEM: state_2114</li>
+            <li>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM: state_2141</li>
+          </ul>
         </div>
         <p id="demo">check 1 2</p>
-        <ResultsTable url={demo_url} />
+        <ResultsTable input_props={sample} />
     </>
     )
 }
-/*      <ResultsTable race={results} /> */
-
-/*const url = document.getElementById('url');
-form.addEventListener('submit', function() {
-  const url = document.getElementById('url');
-});*/
 
 // export is like public in java

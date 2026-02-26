@@ -2,14 +2,24 @@ import {Table, Button} from "@mantine/core";
 import {GetResultsNCSBE} from './functions.ts'
 import { useState, useEffect } from 'react'
 
-export function ResultsTable(props: {url: string}) {
+export function ResultsTable(props: {input_props: []}) {
   const [results_table, setResults_Table] = useState<unknown[] | undefined>([]);
-  console.log(results_table);
+
+  const lid = props.input_props[1];
+  console.log(lid);
+
+  function filterAndSetTable(results: any){
+    const filtered = results.filter(item => item.lid == lid);
+    setResults_Table(filtered);
+    return filtered;
+  }
 
   useEffect(() => {
-      GetResultsNCSBE(props.url).then(
-        results => setResults_Table(results))
+      GetResultsNCSBE(props.input_props[2])
+        .then(results => filterAndSetTable(results))
     }, [])
+
+  //let filtered = full_results.filter(item => item.lid === "2119")
 
   const rows = results_table?.map((result: any) => (
       <Table.Tr key={result.candidate}>

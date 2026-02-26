@@ -18,14 +18,15 @@ const urls_by_locale = [
 
 function RouteComponent() {
   const params = Route.useParams();
-  const url = urls_by_locale.find(locale => locale.outlet == params.id)?.url ?? "";
+  const input_props = params.id.split("_");
+  const url = urls_by_locale.find(locale => locale.outlet == input_props[0])?.url ?? "";
   console.log(url);
 //<div><ResultsTable {} /></div>
+  input_props.push(url);
   return (
     <>
-    <div>Hello "/election-table/$id"!</div>
     <div>
-      <ResultsTable url={url}/>
+      <ResultsTable input_props={input_props}/>
     </div>
     </>
     )

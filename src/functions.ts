@@ -37,12 +37,14 @@ function results_parser(results_table: {[key:string]: string}[]) {
       race: "",
 			candidate: "",
 			votes: "",
-			percent: ""
+			percent: "",
+      lid: "",
 		}
     new_dictionary.race = results_table[i].cnm;
 		new_dictionary.candidate = results_table[i].bnm;
 		new_dictionary.votes = results_table[i].vct;
 		new_dictionary.percent = results_table[i].pct;
+    new_dictionary.lid = results_table[i].lid;
 		new_array.push(new_dictionary);
 	}
 	return new_array;
