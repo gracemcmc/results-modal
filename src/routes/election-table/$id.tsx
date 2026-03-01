@@ -26,7 +26,7 @@ function RouteComponent() {
 //<div><ResultsTable {} /></div>
   return (
     <>
-    <div>
+    <div id = "results-table">
       <ResultsTable race_lid={race_lid}/>
     </div>
     </>

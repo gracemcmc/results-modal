@@ -32,7 +32,7 @@ export function ResultsTable(props: {race_lid: string}) {
     ));
 
     return (
-      <Table highlightOnHover>
+      <Table highlightOnHover styles={{td: {fontSize: "28px"}, th: {fontSize: "32px"}}}>
         <Table.Thead>
           <Table.Tr>
           <Table.Th>Candidate</Table.Th>
