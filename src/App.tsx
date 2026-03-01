@@ -44,8 +44,8 @@ export function App() {
     return (
       <>
         <div id="list">
-          <h3>Append /election-table/ plust the following to the URL to display results</h3>
-          <p> For instance, https://8d00ae41.results-modal.pages.dev/election-table/2141 will displace the NC-13 Dem primary</p>
+          <h3>Append /election-table/ plus the county number + "_" + race id to the URL to display results</h3>
+          <p> For instance, https://8d00ae41.results-modal.pages.dev/election-table/4_2141 will displace the NC-13 Dem primary</p>
         </div>
         <table>
           <tr>
