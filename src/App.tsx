@@ -69,12 +69,24 @@ export function App() {
       <>
         <div id="list">
           <h3>Append the following to the URL to display results</h3>
-          <ul>
-            <li>US SENATE - DEM: state_2147</li>
-            <li>US SENATE - REP: state_2149</li>
-            <li>US HOUSE OF REPRESENTATIVES DISTRICT 04 - DEM: state_2114</li>
-            <li>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM: state_2141</li>
-          </ul>
+          <table>
+            <tr>
+            <td>US SENATE - DEM:</td>
+            <td>2147</td>
+            </tr>
+            <tr>
+            <td>US SENATE - REP:</td>
+            <td>2149</td>
+            </tr>
+            <tr>
+            <td>US HOUSE OF REPRESENTATIVES DISTRICT 04 - DEM:</td>
+            <td>2114</td>
+            </tr>
+            <tr>
+            <td>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM:</td>
+            <td>2141</td>
+            </tr>
+          </table>
         </div>
         <ResultsTable input_props={sample} />
     </>

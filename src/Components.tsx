@@ -2,20 +2,20 @@ import {Table, Button} from "@mantine/core";
 import {GetResultsNCSBE} from './functions.ts'
 import { useState, useEffect } from 'react'
 
-export function ResultsTable(props: {input_props: string[]}) {
-  const [results_table, setResults_Table] = useState<unknown[] | undefined>([]);
+//export function ResultsTable(props: {input_props: string[]}) {}
 
-  const lid = props.input_props[1];
-  console.log(lid);
+export function ResultsTable(props: {race_lid: string}) {
+  const [results_table, setResults_Table] = useState<unknown[] | undefined>([]);
+  const input_url = "https://fpfn4rqbhwnzwe5k2q7tsyy7ga0nbrfb.lambda-url.us-east-2.on.aws/";
 
   function filterAndSetTable(results: any){
-    const filtered = results.filter((item: any) => item.lid == lid);
+    const filtered = results.filter((item: any) => item.lid == props.race_lid);
     setResults_Table(filtered);
     return filtered;
   }
 
   useEffect(() => {
-      GetResultsNCSBE(props.input_props[2])
+      GetResultsNCSBE(input_url)
         .then(results => filterAndSetTable(results))
     }, [])
 
@@ -30,7 +30,7 @@ export function ResultsTable(props: {input_props: string[]}) {
     ));
 
     return (
-      <Table>
+      <Table highlightOnHover>
         <Table.Thead>
           <Table.Tr>
           <Table.Th>Candidate</Table.Th>

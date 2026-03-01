@@ -12,21 +12,22 @@ const urls_by_locale = [
   {outlet: "wake", url: "https://er.ncsbe.gov/enr/20260303/data/results_92.txt?v=22-15-12"},
   {outlet: "durham", url: "https://er.ncsbe.gov/enr/20260303/data/results_32.txt?v=22-15-12"},
   {outlet: "cumberland", url: "https://er.ncsbe.gov/enr/20260303/data/results_26.txt?v=22-15-12"},
-  {outlet: "state", url: "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"},
+  {outlet: "state", url: "https://er.ncsbe.gov/enr/20260303/data/results_0.txt?v=22-15-12"},
 ]
 
+//https://er.ncsbe.gov/enr/20260303/data/results_0.txt?v=22-15-12
+
+//https://fpfn4rqbhwnzwe5k2q7tsyy7ga0nbrfb.lambda-url.us-east-2.on.aws/
 
 function RouteComponent() {
   const params = Route.useParams();
-  const input_props = params.id.split("_");
-  const url = urls_by_locale.find(locale => locale.outlet == input_props[0])?.url ?? "";
-  console.log(url);
+  const race_lid = params.id;
+  //const url = urls_by_locale.find(locale => locale.outlet == input_props[0])?.url ?? "";
 //<div><ResultsTable {} /></div>
-  input_props.push(url);
   return (
     <>
     <div>
-      <ResultsTable input_props={input_props}/>
+      <ResultsTable race_lid={race_lid}/>
     </div>
     </>
     )
