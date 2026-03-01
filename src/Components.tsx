@@ -50,7 +50,7 @@ export function OptionsTable() {
   const options_dict = [];
 
   for (const key in races) {
-    const value = races[key];
+    const value = (races as any)[key];
     options_dict.push(
         <tr>
           <td>{key}</td>
