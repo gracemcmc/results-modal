@@ -1,15 +1,22 @@
 import {Table, Button} from "@mantine/core";
-import {GetResultsNCSBE} from './functions.ts'
-import { useState, useEffect } from 'react'
+import {GetResultsNCSBE} from './functions.ts';
+import { useState, useEffect } from 'react';
+import races from './list_of_races.json';
+
 
 //export function ResultsTable(props: {input_props: string[]}) {}
 
-export function ResultsTable(props: {race_lid: string}) {
+export function ResultsTable(props: {input_props: []}) {
+
+
   const [results_table, setResults_Table] = useState<unknown[] | undefined>([]);
   const input_url = "https://fpfn4rqbhwnzwe5k2q7tsyy7ga0nbrfb.lambda-url.us-east-2.on.aws/";
 
+  const race_lid = props.input_props[1]
+  const race_cid = props.input_props[0]
+
   function filterAndSetTable(results: any){
-    const filtered = results.filter((item: any) => item.lid == props.race_lid);
+    const filtered = results.filter((item: any) => (item.lid == race_lid) && (item.cid == race_cid));
     setResults_Table(filtered);
     return filtered;
   }
@@ -30,7 +37,7 @@ export function ResultsTable(props: {race_lid: string}) {
     ));
 
     return (
-      <Table highlightOnHover>
+      <Table highlightOnHover styles={{td: {fontSize: "28px"}, th: {fontSize: "32px"}}}>
         <Table.Thead>
           <Table.Tr>
           <Table.Th>Candidate</Table.Th>
@@ -42,3 +49,31 @@ export function ResultsTable(props: {race_lid: string}) {
       </Table>
       );
   }
+
+
+export function OptionsTable() {
+  const options_dict = [];
+
+  for (const key in races) {
+    const value = (races as any)[key];
+    options_dict.push(
+        <tr>
+          <td>{key}</td>
+          <td>{value}</td>
+        </tr>
+      );
+  }
+
+  /*json.races.forEach(({ key, val }) =>
+    key in options_dict ? options_dict[key].push(val) : options_dict[key] = [val] );*/
+  return (    
+    <table>
+      <thead>
+        <tr>
+          <th>Race</th>
+          <th>Race LID</th>
+        </tr>
+      </thead>
+      <tbody>{options_dict}</tbody>
+    </table>);
+}
