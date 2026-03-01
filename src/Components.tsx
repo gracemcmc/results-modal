@@ -37,9 +37,9 @@ export function ResultsTable(props: {input_props:string[]}) {
         <Table.Td>{result.percent}</Table.Td>
       </Table.Tr>
     ));
-
+///styles={{td: {fontSize: "28px"}, th: {fontSize: "32px"}}}
     return (
-      <Table highlightOnHover styles={{td: {fontSize: "28px"}, th: {fontSize: "32px"}}}>
+      <Table highlightOnHover>
         <Table.Thead>
           <Table.Tr>
           <Table.Th>Candidate</Table.Th>
