@@ -32,20 +32,24 @@ export async function GetResultsNCSBE(url: string) {
 
 function results_parser(results_table: {[key:string]: string}[]) {
 	const new_array = [];
-	for (let i = 0; i < results_table.length; i++) {
-		let new_dictionary = {
-      race: "",
-			candidate: "",
-			votes: "",
-			percent: "",
-      lid: "",
-		}
-    new_dictionary.race = results_table[i].cnm;
-		new_dictionary.candidate = results_table[i].bnm;
-		new_dictionary.votes = results_table[i].vct;
-		new_dictionary.percent = results_table[i].pct;
-    new_dictionary.lid = results_table[i].lid;
-		new_array.push(new_dictionary);
+	for (let p = 0; p < results_table.length; p++) {
+    //we have to do a second for loop now because of the way the tables are concatenated 
+    //in AWS. p is basically pagination
+    for (let i = 0; i < results_table[p].length; i++) {
+          let new_dictionary = {
+        race: "",
+        candidate: "",
+        votes: "",
+        percent: "",
+        lid: "",
+      }
+        new_dictionary.race = results_table[p][i].cnm;
+        new_dictionary.candidate = results_table[p][i].bnm;
+        new_dictionary.votes = results_table[p][i].vct;
+        new_dictionary.percent = results_table[p][i].pct;
+        new_dictionary.lid = results_table[p][i].lid;
+        new_array.push(new_dictionary);
+    }
 	}
 	return new_array;
 }
