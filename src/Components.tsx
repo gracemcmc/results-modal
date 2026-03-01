@@ -6,7 +6,7 @@ import races from './list_of_races.json';
 
 //export function ResultsTable(props: {input_props: string[]}) {}
 
-export function ResultsTable(props: {input_props: []}) {
+export function ResultsTable(props: {input_props:string[]}) {
 
 
   const [results_table, setResults_Table] = useState<unknown[] | undefined>([]);
