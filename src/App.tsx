@@ -5,8 +5,8 @@ import { useState } from 'react';
 import {Table, Button} from "@mantine/core";
 import './App.css';
 import {GetResultsNCSBE} from './functions.ts'
-import {ResultsTable} from './Components.tsx';
-
+import {ResultsTable, OptionsTable} from './Components.tsx';
+import races from './list_of_races.json';
 
 // utils
 
@@ -53,38 +53,18 @@ export function App() {
 
   const [options, setOptions] = useState();
   const [ncsbeurl, getURL] = useState(" ");
-  const sample = ["faber", "2147", "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"];
-  
+  console.log(races)
+
     return (
       <>
         <div id="list">
           <h3>Append /election-table/ plust the following to the URL to display results</h3>
-          <p> For instance, tk /election-table/2141 will displace the NC-13 Dem primary</p>
-          <table>
-            <tr>
-            <td>US SENATE - DEM:</td>
-            <td>2147</td>
-            </tr>
-            <tr>
-            <td>US SENATE - REP:</td>
-            <td>2149</td>
-            </tr>
-            <tr>
-            <td>US HOUSE OF REPRESENTATIVES DISTRICT 04 - DEM:</td>
-            <td>2114</td>
-            </tr>
-            <tr>
-            <td>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM:</td>
-            <td>2141</td>
-            </tr>
-            <tr>
-            <td>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM:</td>
-            <td>2141</td>
-            </tr>
-          </table>
+          <p> For instance, https://8d00ae41.results-modal.pages.dev/election-table/2141 will displace the NC-13 Dem primary</p>
+
         </div>
+        <div id = "options"><OptionsTable /></div>
     </>
     )
 }
-
+//{JSON.stringify(races)}
 // export is like public in java

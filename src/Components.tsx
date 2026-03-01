@@ -1,6 +1,8 @@
 import {Table, Button} from "@mantine/core";
-import {GetResultsNCSBE} from './functions.ts'
-import { useState, useEffect } from 'react'
+import {GetResultsNCSBE} from './functions.ts';
+import { useState, useEffect } from 'react';
+import races from './list_of_races.json';
+
 
 //export function ResultsTable(props: {input_props: string[]}) {}
 
@@ -42,3 +44,31 @@ export function ResultsTable(props: {race_lid: string}) {
       </Table>
       );
   }
+
+
+export function OptionsTable() {
+  const options_dict = [];
+
+  for (const key in races) {
+    const value = races[key];
+    options_dict.push(
+        <tr>
+          <td>{key}</td>
+          <td>{value}</td>
+        </tr>
+      );
+  }
+
+  /*json.races.forEach(({ key, val }) =>
+    key in options_dict ? options_dict[key].push(val) : options_dict[key] = [val] );*/
+  return (    
+    <table>
+      <thead>
+        <tr>
+          <th>Race</th>
+          <th>Race LID</th>
+        </tr>
+      </thead>
+      <tbody>{options_dict}</tbody>
+    </table>);
+}
