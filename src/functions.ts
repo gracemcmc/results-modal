@@ -37,8 +37,7 @@ export async function GetResultsNCSBE(url: string) {
       }
       const result = await response.json();
       //const duplicates_removed = eatDelete(result);
-      const parsed_results = results_parser(result);
-      return parsed_results;
+      return result;
     } catch (e: any) {
       console.error(e.message, url);
     };
@@ -53,9 +52,8 @@ function eatDelete(results_table: {[key:string]: string}[]) {
   return proper;
 }
 
-function results_parser(results_table: {[key:string]: string}[]) {
+export function results_parser(results_table: {[key:string]: string}[]) {
 	const new_array = [];
-  //for (var p of results_table) {
   	for (let i = 0; i < results_table.length; i++) {
       let new_dictionary = {
           race: "",
@@ -73,6 +71,5 @@ function results_parser(results_table: {[key:string]: string}[]) {
         new_dictionary.cid = results_table[i].cid;
         new_array.push(new_dictionary);
       }
-  	//}
 	return new_array;
 }
