@@ -21,13 +21,14 @@ const urls_by_locale = [
 
 function RouteComponent() {
   const params = Route.useParams();
-  const race_lid = params.id;
+  const input_props = params.id.split("_");
+  console.log(input_props[1])
   //const url = urls_by_locale.find(locale => locale.outlet == input_props[0])?.url ?? "";
 //<div><ResultsTable {} /></div>
   return (
     <>
     <div id = "results-table">
-      <ResultsTable race_lid={race_lid}/>
+      <ResultsTable input_props={input_props}/>
     </div>
     </>
     )

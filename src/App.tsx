@@ -8,20 +8,6 @@ import {GetResultsNCSBE} from './functions.ts'
 import {ResultsTable, OptionsTable} from './Components.tsx';
 import races from './list_of_races.json';
 
-// utils
-
-function get_uniques(arr_of_dicts: any) {
-  let election_options = [''];
-  for (var i = 0; i < arr_of_dicts.length; i++) {
-    //cnm is the unique race name
-    var race_name = arr_of_dicts.cnm;
-    if (!(race_name in election_options)) {
-      election_options.push(race_name);
-    }
-  }
-  return election_options;
-}
-
 
 function PlainResultsTable({race}:{race:unknown[]}) {
   const rows = race.map((res_rows: any) => (
