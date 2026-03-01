@@ -8,16 +8,6 @@ import {GetResultsNCSBE} from './functions.ts'
 import {ResultsTable} from './Components.tsx';
 
 
-const urls_by_locale = [
-  {outlet: "guilford", url: "https://er.ncsbe.gov/enr/20260303/data/results_41.txt?v=22-15-12"},
-  {outlet: "wake", url: "https://er.ncsbe.gov/enr/20260303/data/results_92.txt?v=22-15-12"},
-  {outlet: "durham", url: "https://er.ncsbe.gov/enr/20260303/data/results_32.txt?v=22-15-12"},
-  {outlet: "cumberland", url: "https://er.ncsbe.gov/enr/20260303/data/results_26.txt?v=22-15-12"},
-  {outlet: "state", url: "https://er.ncsbe.gov/enr/20260303/data/results_1.txt?v=22-15-12"},
-]
-
-
-
 // utils
 
 function get_uniques(arr_of_dicts: any) {
@@ -68,7 +58,8 @@ export function App() {
     return (
       <>
         <div id="list">
-          <h3>Append the following to the URL to display results</h3>
+          <h3>Append /election-table/ plust the following to the URL to display results</h3>
+          <p> For instance, tk /election-table/2141 will displace the NC-13 Dem primary</p>
           <table>
             <tr>
             <td>US SENATE - DEM:</td>
@@ -81,6 +72,10 @@ export function App() {
             <tr>
             <td>US HOUSE OF REPRESENTATIVES DISTRICT 04 - DEM:</td>
             <td>2114</td>
+            </tr>
+            <tr>
+            <td>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM:</td>
+            <td>2141</td>
             </tr>
             <tr>
             <td>US HOUSE OF REPRESENTATIVES DISTRICT 13 - DEM:</td>
