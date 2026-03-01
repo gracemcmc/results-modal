@@ -83,7 +83,6 @@ export function App() {
             </tr>
           </table>
         </div>
-        <ResultsTable input_props={sample} />
     </>
     )
 }
