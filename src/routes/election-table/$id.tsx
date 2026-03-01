@@ -21,8 +21,8 @@ const urls_by_locale = [
 
 function RouteComponent() {
   const params = Route.useParams();
-  const input_props = params.id.split("_");
-  console.log(input_props[1])
+  let input_props = ["", ""]
+  input_props = params.id.split("_");
   //const url = urls_by_locale.find(locale => locale.outlet == input_props[0])?.url ?? "";
 //<div><ResultsTable {} /></div>
   return (
