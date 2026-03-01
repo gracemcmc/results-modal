@@ -37,8 +37,7 @@ export async function GetResultsNCSBE(url: string) {
       }
       const result = await response.json();
       //const duplicates_removed = eatDelete(result);
-      const parsed_results = results_parser(result);
-      return parsed_results;
+      return result;
     } catch (e: any) {
       console.error(e.message, url);
     };
@@ -53,10 +52,9 @@ function eatDelete(results_table: {[key:string]: string}[]) {
   return proper;
 }
 
-function results_parser(results_table: {[key:string]: string}[]) {
+export function results_parser(results_table: {[key:string]: string}[]) {
 	const new_array = [];
-  for (let p = 0; p < results_table.length; p++) {
-  	for (let i = 0; i < results_table[p].length; i++) {
+  	for (let i = 0; i < results_table.length; i++) {
       let new_dictionary = {
           race: "",
           candidate: "",
@@ -65,14 +63,13 @@ function results_parser(results_table: {[key:string]: string}[]) {
           lid: "",
           cid: ""
         }
-        new_dictionary.race = results_table[p][i].cnm;
-        new_dictionary.candidate = results_table[p][i].bnm;
-        new_dictionary.votes = results_table[p][i].vct;
-        new_dictionary.percent = results_table[p][i].pct;
-        new_dictionary.lid = results_table[p][i].lid;
-        new_dictionary.cid = results_table[p][i].cid;
+        new_dictionary.race = results_table[i].cnm;
+        new_dictionary.candidate = results_table[i].bnm;
+        new_dictionary.votes = results_table[i].vct;
+        new_dictionary.percent = results_table[i].pct;
+        new_dictionary.lid = results_table[i].lid;
+        new_dictionary.cid = results_table[i].cid;
         new_array.push(new_dictionary);
       }
-  	}
 	return new_array;
 }
