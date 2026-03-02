@@ -49,8 +49,8 @@ export function App() {
           <tr>
             <td>Guilford</td>
             <td>Wake</td>
-            <td>Cumberland</td>
             <td>Durham</td>
+            <td>Cumberland</td>
             <td>State</td>
           </tr>
           <tr>
