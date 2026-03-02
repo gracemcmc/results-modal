@@ -16,6 +16,7 @@ const urls_by_locale = [
   {outlet: "columbus", url: "https://er.ncsbe.gov/enr/20260303/data/results_24.txt?v=22-15-12"},
   {outlet: "robeson", url: "https://er.ncsbe.gov/enr/20260303/data/results_78.txt?v=22-15-12"},
   {outlet: "scotland", url: "https://er.ncsbe.gov/enr/20260303/data/results_83.txt?v=22-15-12"},
+  {outlet: "orange", url: "https://er.ncsbe.gov/enr/20260303/data/results_68.txt?v=22-15-12"},
 ]
 
 //https://er.ncsbe.gov/enr/20260303/data/results_0.txt?v=22-15-12
@@ -24,7 +25,7 @@ const urls_by_locale = [
 
 function RouteComponent() {
   const params = Route.useParams();
-  let input_props = ["92", "2117"];
+  let input_props = ["0", "2117"];
   // cid , lid
   input_props = params.id.split("_");
   //const url = urls_by_locale.find(locale => locale.outlet == input_props[0])?.url ?? "";
