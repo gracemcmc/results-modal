@@ -12,6 +12,10 @@ const urls_by_locale = [
   {outlet: "durham", url: "https://er.ncsbe.gov/enr/20260303/data/results_32.txt?v=22-15-12"},
   {outlet: "cumberland", url: "https://er.ncsbe.gov/enr/20260303/data/results_26.txt?v=22-15-12"},
   {outlet: "state", url: "https://er.ncsbe.gov/enr/20260303/data/results_0.txt?v=22-15-12"},
+  {outlet: "bladen", url: "https://er.ncsbe.gov/enr/20260303/data/results_9.txt?v=22-15-12"},
+  {outlet: "columbus", url: "https://er.ncsbe.gov/enr/20260303/data/results_24.txt?v=22-15-12"},
+  {outlet: "robeson", url: "https://er.ncsbe.gov/enr/20260303/data/results_78.txt?v=22-15-12"},
+  {outlet: "scotland", url: "https://er.ncsbe.gov/enr/20260303/data/results_83.txt?v=22-15-12"},
 ]
 
 //https://er.ncsbe.gov/enr/20260303/data/results_0.txt?v=22-15-12
