@@ -35,17 +35,15 @@ function PlainResultsTable({race}:{race:unknown[]}) {
 
 export function App() {
 
-  let input_url = "https://er.ncsbe.gov/enr/20260303/data/results_58.txt?v=22-15-12";
 
   const [options, setOptions] = useState();
   const [ncsbeurl, getURL] = useState(" ");
-  console.log(races)
 
     return (
       <>
         <div id="list">
           <h3>Append /election-table/ plus the county number + "_" + race id to the URL to display results</h3>
-          <p> For instance, https://8d00ae41.results-modal.pages.dev/election-table/4_2141 will displace the NC-13 Dem primary</p>
+          <p> For instance, https://results-modal.pages.dev/election-table/4_2141 will displace the NC-13 Dem primary</p>
         </div>
         <table>
           <tr>
@@ -61,6 +59,20 @@ export function App() {
             <td>2</td>
             <td>3</td>
             <td>4</td>
+          </tr>
+          <tr>
+            <td>Bladen</td>
+            <td>Columbus</td>
+            <td>Robeson</td>
+            <td>Scotland</td>
+            <td>Orange</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
           </tr>
         </table>
         <div id = "options"><OptionsTable /></div>
