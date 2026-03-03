@@ -66,7 +66,7 @@ export function results_parser(results_table: {[key:string]: string}[]) {
         new_dictionary.race = results_table[i].cnm;
         new_dictionary.candidate = results_table[i].bnm;
         new_dictionary.votes = results_table[i].vct;
-        new_dictionary.percent = +(results_table[i].pct);
+        new_dictionary.percent = parseFloat(results_table[i].pct);
         new_dictionary.percent = (results_table[i].pct *100) + "%";
         new_dictionary.lid = results_table[i].lid;
         new_dictionary.cid = results_table[i].cid;
